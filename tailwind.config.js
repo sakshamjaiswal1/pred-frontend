@@ -4,19 +4,28 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
-      width: {
-        78: "19.5rem",
-        90: "23.5rem",
-        100: "25rem",
-        default: "73.5rem",
-        "60rem": "60rem",
+      keyframes: {
+        ring: {
+          "0%": { transform: "rotate(0deg)" },
+          "10%": { transform: "rotate(15deg)" },
+          "20%": { transform: "rotate(-10deg)" },
+          "30%": { transform: "rotate(7deg)" },
+          "40%": { transform: "rotate(-5deg)" },
+          "50%": { transform: "rotate(3deg)" },
+          "60%, 100%": { transform: "rotate(0deg)" },
+        },
+        starpop: {
+          '0%': { transform: 'scale(1)', opacity: 1 },
+          '30%': { transform: 'scale(1.4)', opacity: 0.9 },
+          '60%': { transform: 'scale(0.9)', opacity: 1 },
+          '100%': { transform: 'scale(1)', opacity: 1 },
+        },
       },
-      space: {},
+      animation: {
+        ring: "ring 0.8s ease",
+        starpop: 'starpop 0.5s ease-in-out',
+      },
 
-      borderRadius: {
-        "32px": "32px",
-        "20px": "20px",
-      },
       colors: {
         "primary-main": {
           50: "var(--primary-main-50)",

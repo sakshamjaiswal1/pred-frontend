@@ -3,58 +3,5 @@
 @import "./utility";
 @import "./colors";
 @import "./shadow";
-.blur-background {
-  position: relative;
-}
-.blur-background::after {
-  content: "";
-  position: absolute;
-  top: -329px;
-  right: -500px;
-  width: 1019px;
-  height: 1019px;
-  border-radius: 50%;
-  z-index: -10;
-  opacity: 0.1;
-  background: #a3e635;
-  filter: blur(317px);
-}
 
-.blur-background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: $neutral-greys-0;
-  z-index: -11;
-}
 
-.gridBackground {
-  background: url("/src/assets/common/grid.svg");
-  background-position: 750px -1000px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-@media screen and (max-width: 767px) {
-  .blur-background::after {
-    content: "";
-    opacity: 0;
-  }
-
-  .blur-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: $neutral-greys-0;
-    z-index: -11;
-  }
-  .gridBackground {
-    background: url("");
-  }
-}
