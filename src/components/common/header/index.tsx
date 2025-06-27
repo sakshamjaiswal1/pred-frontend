@@ -15,14 +15,11 @@ function Header() {
 
   const handleBellClick = () => {
     setIsBellActive((prev) => !prev);
-
-    // Play sound
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
 
-    // Add ring animation
     const bell = bellRef.current;
     if (bell) {
       bell.classList.remove("animate-ring");
@@ -33,8 +30,6 @@ function Header() {
 
   const handleStarClick = () => {
     setIsStarActive((prev) => !prev);
-
-    // Add starpop animation
     const star = starRef.current;
     if (star) {
       star.classList.remove("animate-starpop");
@@ -44,15 +39,12 @@ function Header() {
   };
 
   return (
-    <header className="px-6 py-[14px] flex items-center justify-between border-b border-[#E9E9E9] bg-white">
-      {/* Logo */}
+    <header className="px-6 py-[14px] flex items-center justify-between border-b border-[#E9E9E9] ">
       <div>
         <img src={predLogo} alt="Pred Logo" className="w-[19px] h-9" />
       </div>
 
-      {/* Star and Bell */}
       <div className="flex items-center gap-x-2.5">
-        {/* ⭐ Star */}
         <div
           ref={starRef}
           onClick={handleStarClick}
@@ -65,7 +57,6 @@ function Header() {
           )}
         </div>
 
-        {/* 🔔 Bell */}
         <div
           ref={bellRef}
           onClick={handleBellClick}
@@ -85,11 +76,7 @@ function Header() {
           </div>
         </div>
 
-        <audio
-          ref={audioRef}
-          src={ding}
-          preload="auto"
-        />
+        <audio ref={audioRef} src={ding} preload="auto" />
       </div>
     </header>
   );

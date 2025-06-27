@@ -151,15 +151,21 @@ input::-webkit-inner-spin-button {
 }
 
 .transitionMedium {
-  transition: all ease-in-out 100;
+  transition: all ease-in-out 100ms;
 }
+.transitionSlow {
+  transition: all ease-in-out 300ms;
+}
+
 .rc-input-number-input-wrap {
   input {
     text-align: center !important;
   }
 }
 .mainFont {
-  font-family: "Schibsted Grotesk" !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "dlig" on;
 }
 
 .comingSoonButtonFilter {
