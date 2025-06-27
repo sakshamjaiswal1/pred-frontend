@@ -91,7 +91,9 @@ video {
 
 html,
 body {
-  font-family: "Schibsted Grotesk" !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "dlig" on;
 }
 
 ul {
@@ -163,5 +165,3 @@ input::-webkit-inner-spin-button {
 .comingSoonButtonFilter {
   backdrop-filter: blur(10.699999809265137px);
 }
-
-
