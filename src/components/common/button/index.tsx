@@ -2,10 +2,12 @@ function Button({
   isFullWidth,
   className = "",
   title,
+  onClick,
 }: {
   title: string;
   isFullWidth?: boolean;
   className?: string;
+  onClick?: () => void;
 }) {
   return (
     <button
@@ -15,6 +17,7 @@ function Button({
         active:scale-95 active:duration-75
         focus:outline-none focus:ring-2 focus:ring-[#2B2B2B]/50 focus:ring-offset-1
         ${isFullWidth ? "w-full" : ""} ${className}`}
+      onClick={onClick}
     >
       <span className="transition-transform duration-200 ease-in-out hover:scale-110 inline-block">
         {title}

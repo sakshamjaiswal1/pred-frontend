@@ -11,6 +11,8 @@ const userDetails = getLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
   isDarkModeEnabled: true,
   isMobile: window?.innerWidth < 768,
   isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
+  userBalance: 100,
+  currentAssetPrice: 0.4,
 });
 
 export const initialState: IGlobalReducerState = {
@@ -21,6 +23,8 @@ export const initialState: IGlobalReducerState = {
     isDarkModeEnabled: userDetails?.isDarkModeEnabled,
     isMobile: userDetails.isMobile,
     isPWAOpened: userDetails?.isPWAOpened,
+    userBalance: userDetails?.userBalance || 100,
+    currentAssetPrice: userDetails?.currentAssetPrice || 0.4,
   },
 };
 
@@ -36,6 +40,8 @@ export const globalDataSlice = createSlice({
         isDarkModeEnabled: payload.isDarkModeEnabled,
         isMobile: payload.isMobile,
         isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
+        userBalance: payload.userBalance,
+        currentAssetPrice: payload.currentAssetPrice,
       });
 
       if (payload.isDarkModeEnabled) {
@@ -53,16 +59,54 @@ export const globalDataSlice = createSlice({
         },
       };
     },
+    setUserBalance: (state, { payload }: PayloadAction<number>) => {
+      const updatedData = {
+        ...state.data,
+        userBalance: payload,
+      };
+
+      setLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
+        isDarkModeEnabled: updatedData.isDarkModeEnabled,
+        isMobile: updatedData.isMobile,
+        isPWAOpened: updatedData.isPWAOpened,
+        userBalance: updatedData.userBalance,
+        currentAssetPrice: updatedData.currentAssetPrice,
+      });
+
+      return {
+        ...state,
+        data: updatedData,
+      };
+    },
+    setCurrentAssetPrice: (state, { payload }: PayloadAction<number>) => {
+      const updatedData = {
+        ...state.data,
+        currentAssetPrice: payload,
+      };
+
+      setLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
+        isDarkModeEnabled: updatedData.isDarkModeEnabled,
+        isMobile: updatedData.isMobile,
+        isPWAOpened: updatedData.isPWAOpened,
+        userBalance: updatedData.userBalance,
+        currentAssetPrice: updatedData.currentAssetPrice,
+      });
+
+      return {
+        ...state,
+        data: updatedData,
+      };
+    },
     globalDataGetFail: (
       state,
       { payload }: PayloadAction<IGlobalReducerState["error"]>
     ) => {
       setLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
         isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
-
         isDarkModeEnabled: true,
-
         isMobile: false,
+        userBalance: 100,
+        currentAssetPrice: 0.4,
       });
 
       return {
@@ -71,19 +115,20 @@ export const globalDataSlice = createSlice({
         error: payload,
         data: {
           isDarkModeEnabled: false,
-
           isMobile: false,
           isPWAOpened: false,
+          userBalance: 100,
+          currentAssetPrice: 0.4,
         },
       };
     },
     resetGlobalData: (state) => {
       setLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
         isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
-
         isDarkModeEnabled: true,
-
         isMobile: false,
+        userBalance: 100,
+        currentAssetPrice: 0.4,
       });
 
       return {
@@ -92,9 +137,10 @@ export const globalDataSlice = createSlice({
         error: "",
         data: {
           isDarkModeEnabled: true,
-
           isMobile: false,
           isPWAOpened: false,
+          userBalance: 100,
+          currentAssetPrice: 0.4,
         },
       };
     },
@@ -118,5 +164,16 @@ export const globalDataSlice = createSlice({
     },
   },
 });
+
+export const {
+  setGlobalData,
+  setUserBalance,
+  setCurrentAssetPrice,
+  globalDataGetFail,
+  resetGlobalData,
+  setGLobalDataLoadingStart,
+  setGLobalDataLoadingEnd,
+  setGLobalMobileData,
+} = globalDataSlice.actions;
 
 export default globalDataSlice.reducer;

@@ -20,6 +20,10 @@ function OpenOrders() {
     clearAllOrders();
   };
 
+  const filteredOrders = isChecked
+    ? orders.filter((order) => order.symbol.includes("CSK"))
+    : orders;
+
   return (
     <section>
       <div className="flex items-center justify-between py-[12px] px-[24px] border-b-[1px] border-solid border-[#E9E9E9]">
@@ -37,13 +41,13 @@ function OpenOrders() {
                 : "text-[#858585] hover:text-[#000000]"
             }`}
           >
-            Hide Other Pairs
+            Hide Other Teams
           </label>
         </div>
         <ButtonSecondary title="Cancel All" onClick={handleCancelAll} />
       </div>
 
-      {orders.map((order) => (
+      {filteredOrders.map((order) => (
         <div
           key={order.orderNo}
           className="px-[24px] pt-[24px] border-b-[1px] border-solid border-[#E9E9E9] last:border-b-0"
@@ -52,9 +56,9 @@ function OpenOrders() {
         </div>
       ))}
 
-      {orders.length === 0 && (
+      {filteredOrders.length === 0 && (
         <div className="p-[24px] text-center text-[#666] text-[14px]">
-          No open orders
+          {isChecked ? "No CSK orders found" : "No open orders"}
         </div>
       )}
     </section>

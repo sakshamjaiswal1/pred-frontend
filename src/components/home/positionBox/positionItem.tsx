@@ -1,5 +1,10 @@
 import { IPositionData } from "@/interface/common.interface";
 import ShareIcon from "@/assets/home/share.svg?react";
+import ButtonSecondary from "@/components/common/button/buttonSecondary";
+
+interface PositionItemProps extends IPositionData {
+  onClose?: () => void;
+}
 
 function PositionItem({
   type,
@@ -15,7 +20,8 @@ function PositionItem({
   roi,
   sizePercentage,
   lastSize,
-}: IPositionData) {
+  onClose,
+}: PositionItemProps) {
   const iconBgColor = type === "B" ? "bg-green-500" : "bg-red-500";
   const pnlTextColor = pnlColor === "green" ? "text-green-500" : "text-red-500";
   const roiTextColor = roiColor === "green" ? "text-green-500" : "text-red-500";
@@ -38,9 +44,12 @@ function PositionItem({
           <span className="font-[600] text-[16px] text-[#000]">{symbol}</span>
         </div>
 
-        <button className="p-[4px] hover:bg-gray-100 rounded">
-          <ShareIcon className="h-[16px] w-[16px]" />
-        </button>
+        <div className="flex items-center gap-[8px]">
+          <button className="p-[4px] hover:bg-gray-100 rounded">
+            <ShareIcon className="h-[16px] w-[16px]" />
+          </button>
+          {onClose && <ButtonSecondary title="Close" onClick={onClose} />}
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-[24px]">
