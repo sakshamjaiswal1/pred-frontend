@@ -1,6 +1,7 @@
 import TopBar from "@/components/home/topbar";
 import cskLogo from "@/assets/home/csklogo.png";
 import OrderCreationBox from "@/components/home/orderCrationBox";
+import BidOfferBox from "@/components/home/bidOfferBox";
 
 function Home() {
   return (
@@ -12,9 +13,11 @@ function Home() {
         logoUrl={cskLogo}
         price="34¢"
       />
-      <div className="mt-[23px] flex items-start gap-x-[16px]">
+      <div className="mt-[23px] flex items-start gap-x-[16px] px-[24px]">
         <OrderCreationBox />
-        <div className="min-w-[134px]"></div>
+        <div className="min-w-[134px]">
+          <BidOfferBox />
+        </div>
       </div>
     </div>
   );

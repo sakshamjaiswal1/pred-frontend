@@ -37,7 +37,7 @@ const OrderTypeDropdown = ({
           alignItems: "center",
         }}
         popupMatchSelectWidth={true}
-        suffixIcon={<DownArrow className="w-6 h-6 -mr-[12px]" />}
+        suffixIcon={<DownArrow className="w-6 h-6 -mr-[14px]" />}
         onChange={(value) => setOrderTypeDropdown(value)}
       >
         <Option value={OrderTypeEnumDropdown.LIMIT}>Limit</Option>

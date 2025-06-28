@@ -171,3 +171,30 @@ input::-webkit-inner-spin-button {
 .comingSoonButtonFilter {
   backdrop-filter: blur(10.699999809265137px);
 }
+
+.ant-slider-dot {
+  width: 1px !important;
+  height: 7px !important;
+  background-color: #d9d9d9 !important;
+  border-radius: 0px !important;
+  border: none !important;
+}
+.ant-slider-dot-active {
+  width: 1px !important;
+  height: 7px !important;
+  background-color: #404040 !important;
+  border-radius: 0px !important;
+  border: none !important;
+}
+.ant-slider-mark {
+  display: none !important;
+}
+.ant-slider-mark-text {
+  display: none !important;
+}
+.ant-slider-horizontal.ant-slider-with-marks {
+  margin: 5px !important;
+}
+.ant-slider .ant-slider-handle::after {
+  background-color: #404040 !important;
+}

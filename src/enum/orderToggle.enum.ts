@@ -8,3 +8,8 @@ export enum OrderTypeEnumDropdown {
   MARKET = "Market",
   STOP = "Stop",
 }
+
+export enum BidOfferTypeEnum {
+  BUY = "Buy",
+  SELL = "Sell",
+}

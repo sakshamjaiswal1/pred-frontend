@@ -4,7 +4,9 @@ import "@/scss/index.scss";
 
 
 function App() {
-  return <RouterConfig />;
+
+
+  return  <RouterConfig />;
 }
 
 export default App;
