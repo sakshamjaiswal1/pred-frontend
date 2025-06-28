@@ -18,7 +18,6 @@ function PositionBox() {
     const entryPriceNum = parseFloat(position.entryPrice);
     const currentPriceNum = currentAssetPrice;
     const sizeNum = parseFloat(position.size);
-    // const marginNum = parseFloat(position.margin);
 
     const priceDifference =
       position.type === "B"
@@ -26,7 +25,6 @@ function PositionBox() {
         : entryPriceNum - currentPriceNum;
 
     const finalPnl = priceDifference * sizeNum;
-    // const finalRoi = marginNum > 0 ? (finalPnl / marginNum) * 100 : 0;
 
     const formattedPnl =
       finalPnl >= 0 ? `+${finalPnl.toFixed(2)}` : finalPnl.toFixed(2);
