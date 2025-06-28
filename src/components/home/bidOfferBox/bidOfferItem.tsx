@@ -13,9 +13,16 @@ function BidOfferItem({
   displayPrice: string;
 }) {
   const displayWidth = useMemo(() => {
-    const percent = Math.ceil((currentValue * 100) / totalValue);
-    return percent;
-  }, []);
+    const basePercent = (currentValue * 100) / totalValue;
+
+    const randomShift = (Math.random() - 0.5) * 30;
+    const timeShift = ((Date.now() / 1000) % 10) * 5;
+    const typeBoost = type === BidOfferTypeEnum?.BUY ? 10 : -5;
+
+    const finalPercent = basePercent + randomShift + timeShift + typeBoost;
+
+    return Math.max(10, Math.min(95, Math.round(finalPercent)));
+  }, [currentValue, totalValue, type]);
 
   return (
     <div className="relative w-full h-full">
