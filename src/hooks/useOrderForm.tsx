@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useGlobalData } from "./useGlobalData";
 import { useOpenOrders } from "./useOpenOrders";
+import { usePositions } from "./usePositions";
 import {
   OrderToggleEnum,
   OrderTypeEnumDropdown,
@@ -23,6 +24,7 @@ export const useOrderForm = () => {
 
   const { userBalance, currentAssetPrice } = useGlobalData();
   const { addOrder } = useOpenOrders();
+  const { addPositionItem } = usePositions();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -126,35 +128,58 @@ export const useOrderForm = () => {
       100
     );
 
-    const newOrder = {
-      symbol: "CSK / IPL Winner",
-      orderType: (orderType === OrderToggleEnum.BUY ? "Buy" : "Sell") as
-        | "Buy"
-        | "Sell",
-      type: orderType === OrderToggleEnum.BUY ? ("B" as const) : ("S" as const),
-      dateTime: new Date().toLocaleString(),
-      orderNo: `ORD${Date.now()}`,
-      price: dollartoCent(finalPrice, true) as string,
-      filled: "0.00",
-      amount: sharesAmount,
-      percentage: capitalAllocationPercentage,
-    };
+    if (orderTypeDropdown === OrderTypeEnumDropdown.MARKET) {
+      // Market orders go to positions
+      const newPosition = {
+        id: `pos-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        symbol: "CSK",
+        type:
+          orderType === OrderToggleEnum.BUY ? ("B" as const) : ("S" as const),
+        pnl: "0.00",
+        pnlColor: "green" as const,
+        roi: "0.00%",
+        roiColor: "green" as const,
+        size: sharesAmount,
+        margin: orderValue.toFixed(2),
+        entryPrice: finalPrice.toFixed(5),
+        markPrice: finalPrice.toFixed(5),
+        sizePercentage: "+0.00%",
+        sizePercentageColor: "gray" as const,
+        lastSize: sharesAmount,
+      };
 
-    addOrder(newOrder);
+      addPositionItem(newPosition);
 
-    if (orderTypeDropdown === OrderTypeEnumDropdown.LIMIT) {
       const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
-      const priceText = dollartoCent(priceAmount / 100, true);
+      const priceText = dollartoCent(currentAssetPrice, true);
       showToast(
-        `Limit ${orderTypeText} order placed at ${priceText} for ${sharesAmount} shares`,
+        `Market ${orderTypeText} order executed at ${priceText} for ${sharesAmount} shares`,
         "success",
         4000
       );
     } else {
+      // Limit orders go to open orders
+      const newOrder = {
+        symbol: "CSK / IPL Winner",
+        orderType: (orderType === OrderToggleEnum.BUY ? "Buy" : "Sell") as
+          | "Buy"
+          | "Sell",
+        type:
+          orderType === OrderToggleEnum.BUY ? ("B" as const) : ("S" as const),
+        dateTime: new Date().toLocaleString(),
+        orderNo: `ORD${Date.now()}`,
+        price: dollartoCent(finalPrice, true) as string,
+        filled: "0.00",
+        amount: sharesAmount,
+        percentage: capitalAllocationPercentage,
+      };
+
+      addOrder(newOrder);
+
       const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
-      const priceText = dollartoCent(currentAssetPrice, true);
+      const priceText = dollartoCent(priceAmount / 100, true);
       showToast(
-        `Market ${orderTypeText} order placed at ${priceText} for ${sharesAmount} shares`,
+        `Limit ${orderTypeText} order placed at ${priceText} for ${sharesAmount} shares`,
         "success",
         4000
       );

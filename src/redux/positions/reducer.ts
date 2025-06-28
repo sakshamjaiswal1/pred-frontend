@@ -9,32 +9,34 @@ import { LocalStorageIdEnum } from "@/enum/utility.enum";
 
 const defaultPositions: IPositionData[] = [
   {
+    id: "pos-default-1",
     symbol: "CSK",
     type: "B",
-    pnl: "+221.65",
+    pnl: "+85.50",
     pnlColor: "green",
-    roi: "+91.61%",
+    roi: "+24.85%",
     roiColor: "green",
-    size: "1.3520",
-    margin: "1.3520",
-    entryPrice: "0.01650",
-    markPrice: "0.010252",
-    sizePercentage: "+6.15%",
+    size: "250.00",
+    margin: "95.00",
+    entryPrice: "0.38000",
+    markPrice: "0.40420",
+    sizePercentage: "+6.37%",
     sizePercentageColor: "green",
     lastSize: "---",
   },
   {
+    id: "pos-default-2",
     symbol: "CSK",
     type: "S",
-    pnl: "-145.32",
+    pnl: "-42.75",
     pnlColor: "red",
-    roi: "-52.84%",
+    roi: "-18.26%",
     roiColor: "red",
-    size: "1.3520",
-    margin: "1.3520",
-    entryPrice: "0.01650",
-    markPrice: "0.010252",
-    sizePercentage: "-3.84%",
+    size: "150.00",
+    margin: "63.00",
+    entryPrice: "0.42000",
+    markPrice: "0.40420",
+    sizePercentage: "-3.76%",
     sizePercentageColor: "red",
     lastSize: "---",
   },
@@ -72,7 +74,7 @@ export const positionsSlice = createSlice({
       };
     },
     addPosition: (state, { payload }: PayloadAction<IPositionData>) => {
-      const updatedPositions = [...state.data.positions, payload];
+      const updatedPositions = [payload, ...state.data.positions];
 
       setLocalStorageData(LocalStorageIdEnum.POSITIONS, {
         positions: updatedPositions,
@@ -93,15 +95,12 @@ export const positionsSlice = createSlice({
       {
         payload,
       }: PayloadAction<{
-        symbol: string;
-        type: "B" | "S";
+        id: string;
         updatedPosition: IPositionData;
       }>
     ) => {
       const updatedPositions = state.data.positions.map((position) =>
-        position.symbol === payload.symbol && position.type === payload.type
-          ? payload.updatedPosition
-          : position
+        position.id === payload.id ? payload.updatedPosition : position
       );
 
       setLocalStorageData(LocalStorageIdEnum.POSITIONS, {
@@ -118,15 +117,9 @@ export const positionsSlice = createSlice({
         },
       };
     },
-    removePosition: (
-      state,
-      { payload }: PayloadAction<{ symbol: string; type: "B" | "S" }>
-    ) => {
+    removePosition: (state, { payload }: PayloadAction<{ id: string }>) => {
       const updatedPositions = state.data.positions.filter(
-        (position) =>
-          !(
-            position.symbol === payload.symbol && position.type === payload.type
-          )
+        (position) => position.id !== payload.id
       );
 
       setLocalStorageData(LocalStorageIdEnum.POSITIONS, {

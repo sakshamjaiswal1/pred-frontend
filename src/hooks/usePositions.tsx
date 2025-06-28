@@ -17,16 +17,12 @@ export const usePositions = () => {
     dispatch(addPosition(position));
   };
 
-  const updatePositionItem = (
-    symbol: string,
-    type: "B" | "S",
-    updatedPosition: IPositionData
-  ) => {
-    dispatch(updatePosition({ symbol, type, updatedPosition }));
+  const updatePositionItem = (id: string, updatedPosition: IPositionData) => {
+    dispatch(updatePosition({ id, updatedPosition }));
   };
 
-  const removePositionItem = (symbol: string, type: "B" | "S") => {
-    dispatch(removePosition({ symbol, type }));
+  const removePositionItem = (id: string) => {
+    dispatch(removePosition({ id }));
   };
 
   const setAllPositions = (positions: IPositionData[]) => {
