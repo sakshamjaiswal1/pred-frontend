@@ -5,13 +5,15 @@ function TopBar({
   title,
   volume,
   percentChange,
+  percentChangeColor,
   price,
 }: {
   title: string;
   volume: string;
   logoUrl: string;
   price: string;
-  percentChange: number;
+  percentChange: string;
+  percentChangeColor: string;
 }) {
   return (
     <section className="pl-[17px] pr-[24px] flex items-center justify-between pt-[21px]">
@@ -31,8 +33,12 @@ function TopBar({
           <p className="text-align-right text-[18px] font-[600] leading-[24px] tracking-[0.18px] text-[#000000]">
             {price}
           </p>
-          <p className="text-[#06A900] text-[12px] font-[500] leading-[16px] tracking-[0.12px]">
-            {percentChange}
+          <p
+            className="text-[12px] font-[500] leading-[16px] tracking-[0.12px]"
+            style={{ color: percentChangeColor }}
+          >
+            {percentChange >= "0" ? "+" : ""}
+            {percentChange}%
           </p>
         </div>
         <ChartIcon className="h-9 w-9" />

@@ -25,6 +25,19 @@ function Home() {
   const currentPrice = useRef(0.2);
   const stepCounter = useRef(0);
 
+  const priceChangeData = useMemo(() => {
+    const referencePrice = 0.5;
+    const percentChange =
+      ((currentAssetPrice - referencePrice) / referencePrice) * 100;
+    const isPositive = percentChange >= 0;
+
+    return {
+      percentage: Math.round(percentChange).toString(),
+      isPositive,
+      color: isPositive ? "#06A900" : "#A90022",
+    };
+  }, [currentAssetPrice]);
+
   useEffect(() => {
     const priceInterval = setInterval(() => {
       if (priceDirection.current === "up") {
@@ -93,7 +106,8 @@ function Home() {
       <TopBar
         title="Chennai Super Kings"
         volume="$65.2M Vol."
-        percentChange={0.84}
+        percentChange={priceChangeData.percentage}
+        percentChangeColor={priceChangeData.color}
         logoUrl={cskLogo}
         price={dollartoCent(currentAssetPrice, true) as string}
       />
