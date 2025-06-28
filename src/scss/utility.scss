@@ -91,7 +91,9 @@ video {
 
 html,
 body {
-  font-family: "Schibsted Grotesk" !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "dlig" on;
 }
 
 ul {
@@ -149,19 +151,50 @@ input::-webkit-inner-spin-button {
 }
 
 .transitionMedium {
-  transition: all ease-in-out 100;
+  transition: all ease-in-out 100ms;
 }
+.transitionSlow {
+  transition: all ease-in-out 300ms;
+}
+
 .rc-input-number-input-wrap {
   input {
     text-align: center !important;
   }
 }
 .mainFont {
-  font-family: "Schibsted Grotesk" !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "dlig" on;
 }
 
 .comingSoonButtonFilter {
   backdrop-filter: blur(10.699999809265137px);
 }
 
-
+.ant-slider-dot {
+  width: 1px !important;
+  height: 7px !important;
+  background-color: #d9d9d9 !important;
+  border-radius: 0px !important;
+  border: none !important;
+}
+.ant-slider-dot-active {
+  width: 1px !important;
+  height: 7px !important;
+  background-color: #404040 !important;
+  border-radius: 0px !important;
+  border: none !important;
+}
+.ant-slider-mark {
+  display: none !important;
+}
+.ant-slider-mark-text {
+  display: none !important;
+}
+.ant-slider-horizontal.ant-slider-with-marks {
+  margin: 5px !important;
+}
+.ant-slider .ant-slider-handle::after {
+  background-color: #404040 !important;
+}
