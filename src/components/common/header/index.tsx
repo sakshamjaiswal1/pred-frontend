@@ -94,11 +94,11 @@ function Header() {
           <audio ref={audioRef} src={ding} preload="auto" />
         </div>
       </header>
-      <div className="  mx-auto px-[16px] md:px-[0px]  ">
+      <div className="mx-auto px-[16px] md:px-[0px]">
         <div
-          className={` ${
-            isMobile ? "w-full left-0" : "w-[390px] left-[calc(50%-195px)]"
-          }   fixed -bottom-[3px]   px-[26px]  bg-[#E9E9E9]  flex items-center justify-between md:hidden ${
+          className={`${
+            isMobile ? "w-full left-0" : "w-[412px] left-[calc(50%-206px)]"
+          } fixed -bottom-[3px] px-[26px] bg-[#E9E9E9] flex items-center justify-between ${
             isPWAOpened ? "h-[85px] pb-[23px]" : "h-[65px] pb-[3px]"
           }`}
         >

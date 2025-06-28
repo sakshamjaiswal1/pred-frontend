@@ -27,7 +27,7 @@ function NavButtonMobile({
   isDisabled?: boolean;
   onClick?: () => void;
 }) {
-  const baseClasses = `${className} min-w-[66px] flex flex-col items-center justify-center gap-y-[4px] py-[12px] 
+  const baseClasses = `${className} cursor-pointer min-w-[66px] flex flex-col items-center justify-center gap-y-[4px] py-[12px] 
     transition-all duration-300 ease-in-out transform
     hover:scale-105 active:scale-95
     ${
@@ -37,7 +37,9 @@ function NavButtonMobile({
     ${isDisabled ? "pointer-events-none opacity-50" : ""}`;
 
   const iconClasses = `h-[24px] w-[24px] transition-colors duration-300 ease-in-out
-    ${isActive ? "text-[#000000]" : "text-[#535353]/70"}`;
+    ${
+      isActive ? "text-[#000000]" : "text-[#535353]/70 hover:text-[#000000]/80"
+    }`;
 
   if (isAnchor) {
     return (

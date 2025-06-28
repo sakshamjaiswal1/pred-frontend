@@ -12,7 +12,7 @@ function OpenOrders() {
 
   return (
     <section>
-      <div className="flex items-center justify-between py-[10px] px-[24px]">
+      <div className="flex items-center justify-between py-[12px] px-[24px] border-b-[1px] border-solid border-[#E9E9E9]">
         <div className="flex items-center gap-x-[6px]">
           <CheckboxCustom
             id="close-order"
