@@ -21,7 +21,14 @@ function BidOfferBox() {
             displayPrice="38¢"
           />
         ))}
-
+        <div className="w-full flex items-center justify-between my-[7px]">
+          <p className="text-[14px] font-[600] leading-[20px] tracking-[0.14px] text-[#000000]">
+            34.5¢
+          </p>
+          <p className="text-[10px] font-[500] leading-[20px] tracking-[0.1px]">
+            (Spread 1%)
+          </p>
+        </div>
         {sellBid?.map((item, index) => (
           <BidOfferItem
             key={index}

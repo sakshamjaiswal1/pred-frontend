@@ -1,6 +1,6 @@
 export interface IGlobalData {
   isDarkModeEnabled: boolean;
-  isMboile: boolean;
+  isMobile: boolean;
   isPWAOpened: boolean;
 }
 

@@ -23,7 +23,9 @@ function OrderToggle({
         }`}
         onClick={() => setOrderType(OrderToggleEnum.BUY)}
       >
-        BUY/LONG
+        <span className="transition-transform duration-200 ease-in-out hover:scale-110 inline-block">
+          BUY/LONG
+        </span>
       </button>
       <button
         className={`relative z-10 flex-1 py-[6px] text-[12px] font-[500] leading-[20px] tracking-[0.12px] rounded-[2px] transition-colors duration-200 hover:opacity-70 ${
@@ -31,7 +33,9 @@ function OrderToggle({
         }`}
         onClick={() => setOrderType(OrderToggleEnum.SELL)}
       >
-        SELL/SHORT
+        <span className="transition-transform duration-200 ease-in-out hover:scale-110 inline-block">
+          SELL/SHORT
+        </span>
       </button>
     </div>
   );

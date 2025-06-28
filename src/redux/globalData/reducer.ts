@@ -19,7 +19,7 @@ export const initialState: IGlobalReducerState = {
   isMobile: window?.innerWidth < 768,
   data: {
     isDarkModeEnabled: userDetails?.isDarkModeEnabled,
-    isMboile: userDetails.isMobile,
+    isMobile: userDetails.isMobile,
     isPWAOpened: userDetails?.isPWAOpened,
   },
 };
@@ -34,7 +34,7 @@ export const globalDataSlice = createSlice({
     ) => {
       setLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
         isDarkModeEnabled: payload.isDarkModeEnabled,
-        isMobile: payload.isMboile,
+        isMobile: payload.isMobile,
         isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
       });
 
@@ -62,7 +62,7 @@ export const globalDataSlice = createSlice({
 
         isDarkModeEnabled: true,
 
-        isMboile: false,
+        isMobile: false,
       });
 
       return {
@@ -72,7 +72,7 @@ export const globalDataSlice = createSlice({
         data: {
           isDarkModeEnabled: false,
 
-          isMboile: false,
+          isMobile: false,
           isPWAOpened: false,
         },
       };
@@ -83,7 +83,7 @@ export const globalDataSlice = createSlice({
 
         isDarkModeEnabled: true,
 
-        isMboile: false,
+        isMobile: false,
       });
 
       return {
@@ -93,7 +93,7 @@ export const globalDataSlice = createSlice({
         data: {
           isDarkModeEnabled: true,
 
-          isMboile: false,
+          isMobile: false,
           isPWAOpened: false,
         },
       };
