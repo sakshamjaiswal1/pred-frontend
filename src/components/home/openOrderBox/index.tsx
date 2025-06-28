@@ -47,14 +47,17 @@ function OpenOrders() {
         <ButtonSecondary title="Cancel All" onClick={handleCancelAll} />
       </div>
 
-      {filteredOrders.map((order) => (
-        <div
-          key={order.orderNo}
-          className="px-[24px] pt-[24px] border-b-[1px] border-solid border-[#E9E9E9] last:border-b-0"
-        >
-          <OpenOrderItem data={order} onCancel={handleCancelOrder} />
-        </div>
-      ))}
+      {filteredOrders
+        .slice()
+        .reverse()
+        .map((order) => (
+          <div
+            key={order.orderNo}
+            className="px-[24px] pt-[24px] border-b-[1px] border-solid border-[#E9E9E9] last:border-b-0"
+          >
+            <OpenOrderItem data={order} onCancel={handleCancelOrder} />
+          </div>
+        ))}
 
       {filteredOrders.length === 0 && (
         <div className="p-[24px] text-center text-[#666] text-[14px]">

@@ -11,7 +11,7 @@ const userDetails = getLocalStorageData(LocalStorageIdEnum.USER_DETAILS, {
   isDarkModeEnabled: true,
   isMobile: window?.innerWidth < 768,
   isPWAOpened: window.matchMedia("(display-mode: standalone)").matches,
-  userBalance: 100,
+  userBalance: 80,
   currentAssetPrice: 0.4,
 });
 
@@ -23,7 +23,7 @@ export const initialState: IGlobalReducerState = {
     isDarkModeEnabled: userDetails?.isDarkModeEnabled,
     isMobile: userDetails.isMobile,
     isPWAOpened: userDetails?.isPWAOpened,
-    userBalance: userDetails?.userBalance || 100,
+    userBalance: userDetails?.userBalance || 80,
     currentAssetPrice: userDetails?.currentAssetPrice || 0.4,
   },
 };
