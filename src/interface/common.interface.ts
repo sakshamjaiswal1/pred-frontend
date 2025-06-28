@@ -29,3 +29,15 @@ export interface ITradeHistoryData {
   realizedPNL: string;
   pnlColor: "green" | "red";
 }
+
+export interface IOpenOrderData {
+  symbol: string;
+  orderType: "Buy" | "Sell";
+  type: "B" | "S";
+  dateTime: string;
+  orderNo: string;
+  price: string;
+  filled: string;
+  amount: string;
+  percentage: number;
+}
