@@ -8,6 +8,8 @@ import HomeBottomTabs from "@/components/home/homeBottomTabs";
 import OpenOrders from "@/components/home/openOrderBox";
 import TradeHistoryBox from "@/components/home/tradeHistoryBox";
 import PositionBox from "@/components/home/positionBox";
+import { useGlobalData } from "@/hooks/useGlobalData";
+import { dollartoCent } from "@/utility/convertor";
 
 function Home() {
   const [currentHomeTab, setCurrentHomeTab] = useState<HomeBottomTabsEnum>(
@@ -17,6 +19,8 @@ function Home() {
   const [displayTab, setDisplayTab] = useState<HomeBottomTabsEnum>(
     HomeBottomTabsEnum?.OPEN_ORDERS
   );
+
+  const { currentAssetPrice } = useGlobalData();
 
   const currentDisplayTab = useMemo(() => {
     switch (displayTab) {
@@ -51,7 +55,7 @@ function Home() {
         volume="$65.2M Vol."
         percentChange={0.84}
         logoUrl={cskLogo}
-        price="34¢"
+        price={dollartoCent(currentAssetPrice, true) as string}
       />
       <div className="mt-[23px] flex items-start gap-x-[16px] px-[24px]">
         <OrderCreationBox />

@@ -12,7 +12,6 @@ function TradeHistoryItem({ data }: TradeHistoryItemProps) {
 
   return (
     <div className="p-[24px] border-b-[1px] border-solid border-[#E9E9E9]">
-      {/* Header */}
       <div className="flex items-center justify-between mb-[16px]">
         <div className="flex items-center gap-[8px]">
           <div
@@ -32,16 +31,13 @@ function TradeHistoryItem({ data }: TradeHistoryItemProps) {
         </div>
       </div>
 
-      {/* Order Type */}
       <div className="mb-[16px]">
         <span className={`text-[14px] font-[500] ${orderTypeColor}`}>
           {data.orderType}
         </span>
       </div>
 
-      {/* Trade Details Grid */}
       <div className="grid grid-cols-2 gap-[16px]">
-        {/* Left Column */}
         <div className="space-y-[12px]">
           <div className="flex justify-between">
             <span className="text-[12px] text-[#666]">Order No.</span>
@@ -59,7 +55,6 @@ function TradeHistoryItem({ data }: TradeHistoryItemProps) {
           </div>
         </div>
 
-        {/* Right Column */}
         <div className="space-y-[12px]">
           <div className="flex justify-between">
             <span className="text-[12px] text-[#666]">Fee (USDC)</span>

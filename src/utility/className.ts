@@ -1,8 +1,4 @@
-/**
- * @param classes
- * @returns { string }
- * @see https://github.com/JedWatson/classnames/blob/master/index.js
- */
+
 
 export const classNames = (classes: (string | { [className: string]: boolean })[]): string => {
     const hasOwn = {}.hasOwnProperty;

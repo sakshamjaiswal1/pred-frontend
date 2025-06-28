@@ -18,7 +18,7 @@ export interface IPositionData {
 
 export interface ITradeHistoryData {
   symbol: string;
-  type: "B" | "S"; // Buy or Sell
+  type: "B" | "S";
   orderType: "Buy" | "Sell";
   dateTime: string;
   orderNo: string;
@@ -28,4 +28,16 @@ export interface ITradeHistoryData {
   role: string;
   realizedPNL: string;
   pnlColor: "green" | "red";
+}
+
+export interface IOpenOrderData {
+  symbol: string;
+  orderType: "Buy" | "Sell";
+  type: "B" | "S";
+  dateTime: string;
+  orderNo: string;
+  price: string;
+  filled: string;
+  amount: string;
+  percentage: number;
 }

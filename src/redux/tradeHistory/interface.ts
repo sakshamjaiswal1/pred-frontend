@@ -1,6 +1,6 @@
 export interface ITradeHistoryData {
   symbol: string;
-  type: "B" | "S"; // Buy or Sell
+  type: "B" | "S";
   orderType: "Buy" | "Sell";
   dateTime: string;
   orderNo: string;

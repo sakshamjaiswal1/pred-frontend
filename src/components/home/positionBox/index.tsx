@@ -1,43 +1,47 @@
 import PositionItem from "./positionItem";
+import ButtonSecondary from "@/components/common/button/buttonSecondary";
+import { usePositions } from "@/hooks/usePositions";
 
 function PositionBox() {
-  const sellPositionData = {
-    symbol: "CSK",
-    type: "S" as const,
-    pnl: "+221.65",
-    pnlColor: "green" as const,
-    roi: "+91.61%",
-    roiColor: "green" as const,
-    size: "1.3520",
-    margin: "1.3520",
-    entryPrice: "0.01650",
-    markPrice: "0.010252",
-    sizePercentage: "6.15%",
-    sizePercentageColor: "green" as const,
-    lastSize: "---",
+  const { positions, clearAllPositions, removePositionItem } = usePositions();
+
+  const handleCloseAllPositions = () => {
+    clearAllPositions();
   };
 
-  const buyPositionData = {
-    symbol: "CSK",
-    type: "B" as const,
-    pnl: "+221.65",
-    pnlColor: "green" as const,
-    roi: "+91.61%",
-    roiColor: "green" as const,
-    size: "1.3520",
-    margin: "1.3520",
-    entryPrice: "0.01650",
-    markPrice: "0.010252",
-    sizePercentage: "6.15%",
-    sizePercentageColor: "green" as const,
-    lastSize: "---",
+  const handleClosePosition = (symbol: string, type: "B" | "S") => {
+    removePositionItem(symbol, type);
   };
 
   return (
-    <div>
-      <PositionItem {...buyPositionData} />
-      <PositionItem {...sellPositionData} />
-    </div>
+    <section>
+      <div className="flex items-center justify-between py-[12px] px-[24px] border-b-[1px] border-solid border-[#E9E9E9]">
+        <div className="flex items-center gap-x-[8px]">
+          <span className="text-[12px] font-[500] text-[#666]">
+            Symbol / PNL / ROI
+          </span>
+        </div>
+        <ButtonSecondary
+          title="Close All Positions"
+          onClick={handleCloseAllPositions}
+        />
+      </div>
+
+      {positions.map((position, index) => (
+        <div key={`${position.symbol}-${position.type}-${index}`}>
+          <PositionItem
+            {...position}
+            onClose={() => handleClosePosition(position.symbol, position.type)}
+          />
+        </div>
+      ))}
+
+      {positions.length === 0 && (
+        <div className="p-[24px] text-center text-[#666] text-[14px]">
+          No positions available
+        </div>
+      )}
+    </section>
   );
 }
 
