@@ -3,7 +3,7 @@ import cskLogo from "@/assets/home/csklogo.png";
 import OrderCreationBox from "@/components/home/orderCrationBox";
 import BidOfferBox from "@/components/home/bidOfferBox";
 import { HomeBottomTabsEnum } from "@/enum/orderToggle.enum";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import HomeBottomTabs from "@/components/home/homeBottomTabs";
 import OpenOrders from "@/components/home/openOrderBox";
 import TradeHistoryBox from "@/components/home/tradeHistoryBox";
@@ -20,7 +20,60 @@ function Home() {
     HomeBottomTabsEnum?.OPEN_ORDERS
   );
 
-  const { currentAssetPrice } = useGlobalData();
+  const { currentAssetPrice, updateCurrentAssetPrice } = useGlobalData();
+  const priceDirection = useRef<"up" | "down">("up");
+  const currentPrice = useRef(0.2);
+  const stepCounter = useRef(0);
+
+  const priceChangeData = useMemo(() => {
+    const referencePrice = 0.5;
+    const percentChange =
+      ((currentAssetPrice - referencePrice) / referencePrice) * 100;
+    const isPositive = percentChange >= 0;
+
+    return {
+      percentage: Math.round(percentChange).toString(),
+      isPositive,
+      color: isPositive ? "#06A900" : "#A90022",
+    };
+  }, [currentAssetPrice]);
+
+  useEffect(() => {
+    const priceInterval = setInterval(() => {
+      if (priceDirection.current === "up") {
+        if (stepCounter.current < 2) {
+          currentPrice.current += 0.01;
+          stepCounter.current++;
+        } else {
+          currentPrice.current -= 0.01;
+          stepCounter.current = 0;
+        }
+
+        if (currentPrice.current >= 1.2) {
+          priceDirection.current = "down";
+          stepCounter.current = 0;
+        }
+      } else {
+        if (stepCounter.current < 2) {
+          currentPrice.current -= 0.01;
+          stepCounter.current++;
+        } else {
+          currentPrice.current += 0.01;
+          stepCounter.current = 0;
+        }
+
+        if (currentPrice.current <= 0.2) {
+          priceDirection.current = "up";
+          stepCounter.current = 0;
+        }
+      }
+
+      const roundedPrice = Math.round(currentPrice.current * 100) / 100;
+      updateCurrentAssetPrice(roundedPrice);
+    }, 500);
+
+    return () => clearInterval(priceInterval);
+  }, [updateCurrentAssetPrice]);
 
   const currentDisplayTab = useMemo(() => {
     switch (displayTab) {
@@ -53,7 +106,8 @@ function Home() {
       <TopBar
         title="Chennai Super Kings"
         volume="$65.2M Vol."
-        percentChange={0.84}
+        percentChange={priceChangeData.percentage}
+        percentChangeColor={priceChangeData.color}
         logoUrl={cskLogo}
         price={dollartoCent(currentAssetPrice, true) as string}
       />

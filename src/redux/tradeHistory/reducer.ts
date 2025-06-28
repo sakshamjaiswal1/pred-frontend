@@ -68,7 +68,7 @@ export const tradeHistorySlice = createSlice({
       };
     },
     addTradeHistory: (state, { payload }: PayloadAction<ITradeHistoryData>) => {
-      const updatedTrades = [...state.data.trades, payload];
+      const updatedTrades = [payload, ...state.data.trades];
 
       setLocalStorageData(LocalStorageIdEnum.TRADE_HISTORY, {
         trades: updatedTrades,

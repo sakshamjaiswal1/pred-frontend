@@ -1,6 +1,7 @@
 export type FixTypeLater = unknown;
 
 export interface IPositionData {
+  id: string;
   symbol: string;
   type: "B" | "S";
   pnl: string;

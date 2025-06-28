@@ -5,6 +5,7 @@ function Input({
   onChange,
   inputType = "text",
   rightElement,
+  disabled = false,
 }: {
   value?: string | number;
   className?: string;
@@ -12,6 +13,7 @@ function Input({
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputType?: React.InputHTMLAttributes<HTMLInputElement>["type"];
   rightElement?: React.ReactNode;
+  disabled?: boolean;
 }) {
   return (
     <div
@@ -23,6 +25,7 @@ function Input({
         value={value}
         onChange={onChange}
         type={inputType || "text"}
+        disabled={disabled}
       />
       {rightElement && rightElement}
     </div>

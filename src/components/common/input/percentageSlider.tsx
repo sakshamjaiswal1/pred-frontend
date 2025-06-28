@@ -1,13 +1,16 @@
 import { ConfigProvider, Slider } from "antd";
-import { SetStateAction, useState } from "react";
 
-const PercentageSlider = ({ className = "" }) => {
-  const [sliderValue, setSliderValue] = useState(0);
+interface PercentageSliderProps {
+  className?: string;
+  value: number;
+  onChange: (value: number) => void;
+}
 
-  const handleChange = (val: SetStateAction<number>) => {
-    setSliderValue(val);
-  };
-
+const PercentageSlider = ({
+  className = "",
+  value,
+  onChange,
+}: PercentageSliderProps) => {
   return (
     <ConfigProvider
       theme={{
@@ -39,8 +42,8 @@ const PercentageSlider = ({ className = "" }) => {
           <Slider
             min={0}
             max={100}
-            value={sliderValue}
-            onChange={handleChange}
+            value={value}
+            onChange={onChange}
             tooltip={{ open: false }}
             marks={{
               25: " ",
@@ -51,8 +54,12 @@ const PercentageSlider = ({ className = "" }) => {
         </div>
 
         {/* Value Box */}
-        <div className="min-w-[48px]  px-2 py-[10px] bg-[#f5f5f5] border-[1px] border-solid border-[#E9E9E9] text-[12px] font-medium text-[#000000]/40 rounded-[4px] text-center leading-[16px] tracking-[0.12px] ">
-          {sliderValue} %
+        <div
+          className={`min-w-[48px]  px-2 py-[10px] bg-[#f5f5f5] border-[1px] border-solid border-[#E9E9E9] text-[12px] font-medium rounded-[4px] text-center leading-[16px] tracking-[0.12px] ${
+            value > 0 ? "text-[#000000]" : "text-[#000000]/40"
+          }`}
+        >
+          {value} %
         </div>
       </div>
     </ConfigProvider>
