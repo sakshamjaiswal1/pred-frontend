@@ -26,7 +26,7 @@ const OrderTypeDropdown = ({
       <Select
         defaultValue={orderTypeDropdown}
         variant="borderless"
-        className="mainFont font-medium text-[14px] leading-[20px] tracking-[0.12px] w-full !text-[#000000]"
+        className="!mainFont  !text-[12px] !font-[500] !leading-[20px] !tracking-[0.12px] w-full !text-[#000000]"
         style={{
           height: 24,
           lineHeight: "1",

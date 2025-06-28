@@ -171,7 +171,18 @@ input::-webkit-inner-spin-button {
 .comingSoonButtonFilter {
   backdrop-filter: blur(10.699999809265137px);
 }
-
+.ant-select-selection-item {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-feature-settings: "dlig" on;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 16px;
+  letter-spacing: 0.12px;
+}
+.ant-select-selector {
+  padding: 0 4px !important;
+}
 .ant-slider-dot {
   width: 1px !important;
   height: 7px !important;

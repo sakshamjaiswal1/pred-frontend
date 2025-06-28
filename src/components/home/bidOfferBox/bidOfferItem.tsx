@@ -25,7 +25,7 @@ function BidOfferItem({
         }`}
         style={{ width: `${displayWidth}%` }}
       />
-      <div className="w-full flex items-center justify-between text-[12px] font-[500] leading-[16px] tracking-[0.12] py-[3px]">
+      <div className="w-full flex items-center justify-between text-[12px] font-[500] leading-[16px] tracking-[0.12] py-[3px] text-[#000000]/60">
         <p>{displayPrice}</p>
         <p>{Math?.ceil(currentValue)}</p>
       </div>

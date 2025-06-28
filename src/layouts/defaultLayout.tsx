@@ -8,7 +8,7 @@ function DefaultLayout({
   return (
     <div className="bg-neutral-greys-500">
       <div
-        className={`md:max-w-[412px] md:mx-auto min-h-screen bg-neutral-greys-50`}
+        className={`md:max-w-[412px] md:mx-auto min-h-screen bg-[#FFFFFF]`}
       >
         <div
           className={` 
