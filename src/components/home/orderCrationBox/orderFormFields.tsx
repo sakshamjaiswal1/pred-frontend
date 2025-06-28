@@ -35,18 +35,22 @@ function OrderFormFields({
   onSharesChange,
   onPercentageChange,
 }: OrderFormFieldsProps) {
+  const isMarketOrder = orderTypeDropdown === OrderTypeEnumDropdown.MARKET;
+  const pricePlaceholder = isMarketOrder ? "Market Price" : "Price (USD)";
+
   return (
     <>
       <Input
-        placeholder="Price (USD)"
+        placeholder={pricePlaceholder}
         value={priceAmount}
         onChange={onPriceChange}
         inputType="number"
+        disabled={isMarketOrder}
         className={`mt-[8px] ${
           priceError || (!validatePrice && priceAmount !== -Infinity)
             ? "border-red-500 border-2"
             : ""
-        }`}
+        } ${isMarketOrder ? "bg-gray-100 cursor-not-allowed" : ""}`}
         rightElement={
           <p className="text-[12px] font-[500] leading-[16px] tracking-[0.12px] text-[#000000] flex items-center gap-x-1">
             <span>{dollartoCent(currentAssetPrice)}</span>
@@ -65,7 +69,7 @@ function OrderFormFields({
               )})`}
         </p>
       )}
-      {!validatePrice && priceAmount !== -Infinity && (
+      {!validatePrice && priceAmount !== -Infinity && !isMarketOrder && (
         <p className="text-red-500 text-[10px] mt-1">
           Please enter a valid price greater than 0
         </p>

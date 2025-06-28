@@ -6,6 +6,7 @@ import {
   OrderTypeEnumDropdown,
 } from "@/enum/orderToggle.enum";
 import { dollartoCent } from "@/utility/convertor";
+import { useToast } from "@/contexts/ToastContext";
 
 export const useOrderForm = () => {
   const [orderType, setOrderType] = useState<OrderToggleEnum>(
@@ -22,6 +23,7 @@ export const useOrderForm = () => {
 
   const { userBalance, currentAssetPrice } = useGlobalData();
   const { addOrder } = useOpenOrders();
+  const { showToast } = useToast();
 
   useEffect(() => {
     if (percentage === 0) {
@@ -50,8 +52,11 @@ export const useOrderForm = () => {
   }, [sharesAmount]);
 
   const validatePrice = useMemo(() => {
+    if (orderTypeDropdown === OrderTypeEnumDropdown.MARKET) {
+      return true;
+    }
     return priceAmount !== -Infinity && priceAmount > 0;
-  }, [priceAmount]);
+  }, [priceAmount, orderTypeDropdown]);
 
   useEffect(() => {
     setPriceError(!validateLimitPrice);
@@ -105,12 +110,17 @@ export const useOrderForm = () => {
       return;
     }
 
-    if (priceError) {
+    if (priceError && orderTypeDropdown === OrderTypeEnumDropdown.LIMIT) {
       setSubmitError("Please fix the price validation error");
       return;
     }
 
-    const orderValue = (priceAmount / 100) * parseFloat(sharesAmount);
+    const finalPrice =
+      orderTypeDropdown === OrderTypeEnumDropdown.MARKET
+        ? currentAssetPrice
+        : priceAmount / 100;
+
+    const orderValue = finalPrice * parseFloat(sharesAmount);
     const capitalAllocationPercentage = Math.min(
       Math.round((orderValue / userBalance) * 100),
       100
@@ -124,13 +134,31 @@ export const useOrderForm = () => {
       type: orderType === OrderToggleEnum.BUY ? ("B" as const) : ("S" as const),
       dateTime: new Date().toLocaleString(),
       orderNo: `ORD${Date.now()}`,
-      price: dollartoCent(priceAmount / 100, true) as string,
+      price: dollartoCent(finalPrice, true) as string,
       filled: "0.00",
       amount: sharesAmount,
       percentage: capitalAllocationPercentage,
     };
 
     addOrder(newOrder);
+
+    if (orderTypeDropdown === OrderTypeEnumDropdown.LIMIT) {
+      const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
+      const priceText = dollartoCent(priceAmount / 100, true);
+      showToast(
+        `Limit ${orderTypeText} order placed at ${priceText} for ${sharesAmount} shares`,
+        "success",
+        4000
+      );
+    } else {
+      const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
+      const priceText = dollartoCent(currentAssetPrice, true);
+      showToast(
+        `Market ${orderTypeText} order placed at ${priceText} for ${sharesAmount} shares`,
+        "success",
+        4000
+      );
+    }
 
     setPriceAmount(-Infinity);
     setSharesAmount("");
