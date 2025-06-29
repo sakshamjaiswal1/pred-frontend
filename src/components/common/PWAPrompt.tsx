@@ -3,7 +3,6 @@ import { usePWA } from "@/hooks/usePWA";
 
 const PWAPrompt: React.FC = () => {
   const {
-    isOnline,
     needRefresh,
     offlineReady,
     handleUpdate,

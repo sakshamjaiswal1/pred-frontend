@@ -1,15 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRegisterSW } from "virtual:pwa-register/react";
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
-
 export const usePWA = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
