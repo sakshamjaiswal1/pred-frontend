@@ -5,7 +5,7 @@ function HomeBottomTabs({
   setCurrentHomeTab,
 }: {
   currentHomeTab: HomeBottomTabsEnum;
-  setCurrentHomeTab: React.Dispatch<React.SetStateAction<HomeBottomTabsEnum>>;
+  setCurrentHomeTab: (tab: HomeBottomTabsEnum) => void;
 }) {
   const allTabs = [
     HomeBottomTabsEnum?.OPEN_ORDERS,
