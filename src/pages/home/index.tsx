@@ -9,16 +9,14 @@ import OpenOrders from "@/components/home/openOrderBox";
 import TradeHistoryBox from "@/components/home/tradeHistoryBox";
 import PositionBox from "@/components/home/positionBox";
 import { useGlobalData } from "@/hooks/useGlobalData";
+import { useUIState } from "@/hooks/useUIState";
 import { dollartoCent } from "@/utility/convertor";
 
 function Home() {
-  const [currentHomeTab, setCurrentHomeTab] = useState<HomeBottomTabsEnum>(
-    HomeBottomTabsEnum?.OPEN_ORDERS
-  );
+  const { currentHomeTab, updateCurrentHomeTab } = useUIState();
   const [isAnimating, setIsAnimating] = useState(false);
-  const [displayTab, setDisplayTab] = useState<HomeBottomTabsEnum>(
-    HomeBottomTabsEnum?.OPEN_ORDERS
-  );
+  const [displayTab, setDisplayTab] =
+    useState<HomeBottomTabsEnum>(currentHomeTab);
 
   const { currentAssetPrice, updateCurrentAssetPrice } = useGlobalData();
   const priceDirection = useRef<"up" | "down">("up");
@@ -120,7 +118,7 @@ function Home() {
       <div className="mt-[24px]">
         <HomeBottomTabs
           currentHomeTab={currentHomeTab}
-          setCurrentHomeTab={setCurrentHomeTab}
+          setCurrentHomeTab={updateCurrentHomeTab}
         />
         <div
           className={`transition-opacity duration-300 ease-in-out ${
