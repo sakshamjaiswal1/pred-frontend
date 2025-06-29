@@ -12,6 +12,7 @@ import TradeIcon from "@/assets/bottomMenu/trade.svg?react";
 import WalletIcon from "@/assets/bottomMenu/wallet.svg?react";
 import MoreIcon from "@/assets/bottomMenu/more.svg?react";
 import { HeaderToggleEnum } from "@/enum/orderToggle.enum";
+import { useGlobalData } from "@/hooks/useGlobalData";
 
 function Header() {
   const [isBellActive, setIsBellActive] = useState(false);
@@ -19,6 +20,8 @@ function Header() {
   const bellRef = useRef<HTMLDivElement>(null);
   const starRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const { userBalance } = useGlobalData();
 
   const [headerToggleState, setHeaderToggleState] = useState<HeaderToggleEnum>(
     HeaderToggleEnum?.TRADE
@@ -120,7 +123,7 @@ function Header() {
           />
           <NavButtonMobile
             Icon={WalletIcon}
-            title={"$30.38"}
+            title={`$${userBalance}`}
             to="/"
             isActive={headerToggleState === HeaderToggleEnum.WALLET}
             onClick={() => setHeaderToggleState(HeaderToggleEnum?.WALLET)}
