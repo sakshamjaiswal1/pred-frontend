@@ -6,7 +6,7 @@ function DefaultLayout({
   MainContentComponent: React.FC;
 }) {
   return (
-    <div className="bg-neutral-greys-500">
+    <div className="bg-[#64748b]">
       <div
         className={`md:max-w-[412px] md:mx-auto min-h-screen bg-[#FFFFFF]`}
       >
