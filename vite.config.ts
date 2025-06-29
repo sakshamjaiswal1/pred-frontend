@@ -80,7 +80,6 @@ export default defineConfig({
             },
           },
         ],
-        navigateFallback: "/offline.html",
         navigateFallbackDenylist: [/^\/_/, /\/api\//],
       },
       includeAssets: [
@@ -92,7 +91,6 @@ export default defineConfig({
         "pwa/logo180.png",
         "pwa/logo192.png",
         "pwa/logo512.png",
-        "offline.html",
       ],
       manifest: {
         name: "Pred - Trading Platform",
