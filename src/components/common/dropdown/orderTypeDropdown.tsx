@@ -10,9 +10,7 @@ const OrderTypeDropdown = ({
 }: {
   className?: string;
   orderTypeDropdown: OrderTypeEnumDropdown;
-  setOrderTypeDropdown: React.Dispatch<
-    React.SetStateAction<OrderTypeEnumDropdown>
-  >;
+  setOrderTypeDropdown: (orderTypeDropdown: OrderTypeEnumDropdown) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -20,7 +18,6 @@ const OrderTypeDropdown = ({
   const options = [
     { value: OrderTypeEnumDropdown.LIMIT, label: "Limit" },
     { value: OrderTypeEnumDropdown.MARKET, label: "Market" },
-    { value: OrderTypeEnumDropdown.STOP, label: "Stop" },
   ];
 
   const selectedOption = options.find(

@@ -5,7 +5,7 @@ function OrderToggle({
   setOrderType,
 }: {
   orderType: OrderToggleEnum;
-  setOrderType: React.Dispatch<React.SetStateAction<OrderToggleEnum>>;
+  setOrderType: (orderType: OrderToggleEnum) => void;
 }) {
   return (
     <div className="relative w-full flex bg-[#F5F5F5] border border-[#E9E9E9] rounded-[4px] px-[2px] py-[2px]">

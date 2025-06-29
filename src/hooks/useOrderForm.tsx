@@ -2,19 +2,23 @@ import { useState, useMemo, useEffect } from "react";
 import { useGlobalData } from "./useGlobalData";
 import { useOpenOrders } from "./useOpenOrders";
 import { usePositions } from "./usePositions";
+import { useUIState } from "./useUIState";
 import {
   OrderToggleEnum,
   OrderTypeEnumDropdown,
+  HomeBottomTabsEnum,
 } from "@/enum/orderToggle.enum";
 import { dollartoCent } from "@/utility/convertor";
 import { useToast } from "@/contexts/ToastContext";
 
 export const useOrderForm = () => {
-  const [orderType, setOrderType] = useState<OrderToggleEnum>(
-    OrderToggleEnum.BUY
-  );
-  const [orderTypeDropdown, setOrderTypeDropdown] =
-    useState<OrderTypeEnumDropdown>(OrderTypeEnumDropdown.LIMIT);
+  const {
+    orderType,
+    orderTypeDropdown,
+    updateOrderType,
+    updateOrderTypeDropdown,
+    updateCurrentHomeTab,
+  } = useUIState();
   const [priceAmount, setPriceAmount] = useState<number>(-Infinity);
   const [sharesAmount, setSharesAmount] = useState<string>("");
   const [percentage, setPercentage] = useState<number>(0);
@@ -150,6 +154,9 @@ export const useOrderForm = () => {
 
       addPositionItem(newPosition);
 
+      // Switch to Positions tab when market order is placed
+      updateCurrentHomeTab(HomeBottomTabsEnum.POSITIONS);
+
       const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
       const priceText = dollartoCent(currentAssetPrice, true);
       showToast(
@@ -176,6 +183,9 @@ export const useOrderForm = () => {
 
       addOrder(newOrder);
 
+      // Switch to Open Orders tab when limit order is placed
+      updateCurrentHomeTab(HomeBottomTabsEnum.OPEN_ORDERS);
+
       const orderTypeText = orderType === OrderToggleEnum.BUY ? "Buy" : "Sell";
       const priceText = dollartoCent(priceAmount / 100, true);
       showToast(
@@ -193,9 +203,9 @@ export const useOrderForm = () => {
 
   return {
     orderType,
-    setOrderType,
+    setOrderType: updateOrderType,
     orderTypeDropdown,
-    setOrderTypeDropdown,
+    setOrderTypeDropdown: updateOrderTypeDropdown,
     priceAmount,
     sharesAmount,
     percentage,

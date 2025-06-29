@@ -3,4 +3,5 @@ export enum LocalStorageIdEnum {
   TRADE_HISTORY = "TRADE_HISTORY",
   OPEN_ORDERS = "OPEN_ORDERS",
   POSITIONS = "POSITIONS",
+  UI_STATE = "UI_STATE",
 }
