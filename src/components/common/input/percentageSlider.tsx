@@ -20,11 +20,8 @@ const PercentageSlider = ({
             trackHoverBg: "#404040",
             railBg: "#E0E0E0",
             railHoverBg: "#E0E0E0",
-
             handleSize: 8,
-
             dotSize: 8,
-
             railSize: 2,
             dotActiveBorderColor: "#404040",
             dotBorderColor: "#404040",

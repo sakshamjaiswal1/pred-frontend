@@ -15,6 +15,12 @@ function Input({
   rightElement?: React.ReactNode;
   disabled?: boolean;
 }) {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && onChange) {
+      // Allow default enter behavior for inputs
+    }
+  };
+
   return (
     <div
       className={`rounded border-[1px] border-solid border-[#E9E9E9] bg-[#F5F5F5] ${className}  pr-[10px] flex items-center justify-between`}
@@ -24,6 +30,7 @@ function Input({
         placeholder={placeholder || ""}
         value={value}
         onChange={onChange}
+        onKeyDown={handleKeyDown}
         type={inputType || "text"}
         disabled={disabled}
       />

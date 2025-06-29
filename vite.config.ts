@@ -220,18 +220,7 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
-      "/github-api": {
-        target: "https://raw.githubusercontent.com",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/github-api/, ""),
-      },
-      "/api": {
-        target: "https://api-staging2.chaquen.io",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
+    proxy: {},
     port: 9027,
     host: "0.0.0.0",
   },

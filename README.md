@@ -59,7 +59,7 @@
 - **Progressive Web App (PWA)** - Installable app with offline capabilities
 - **Responsive Design** - Optimized for desktop and mobile devices
 - **Real-time Notifications** - Success/error notifications for all trading actions
-- **Intuitive Interface** - Clean, modern UI with Ant Design components
+- **Intuitive Interface** - Clean, modern UI with component library
 - **Tab-based Navigation** - Easy switching between Open Orders, Positions, and Trade History
 
 ### 🛡️ **Risk Management**
@@ -128,7 +128,6 @@
 
 ### UI & Styling
 
-- **Ant Design 5.14.0** - Enterprise-grade UI components
 - **Tailwind CSS 3.4.1** - Utility-first CSS framework
 - **Sass 1.70.0** - CSS preprocessor for advanced styling
 - **Tailwind Merge 2.2.1** - Utility for merging Tailwind classes
@@ -228,10 +227,7 @@ fe-pred/
 
 ### Environment Variables
 
-The app uses proxy configuration for API calls:
-
-- **Staging API**: `https://api-staging2.chaquen.io`
-- **GitHub API**: `https://raw.githubusercontent.com`
+The app uses modern configuration for development and production environments.
 
 ### PWA Configuration
 
@@ -255,7 +251,6 @@ The project uses a combination of:
 
 - **Tailwind CSS** - For utility-first styling
 - **SCSS** - For complex styling and mixins
-- **Ant Design** - For consistent UI components
 - **CSS Modules** - For component-scoped styles
 
 ## 🔗 API Integration
