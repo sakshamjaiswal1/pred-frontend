@@ -16,7 +16,7 @@ function HomeBottomTabs({
   return (
     <div className="w-full border-[1px] border-solid border-[#E9E9E9] px-[24px]">
       <div className="flex items-center gap-x-[16px] py-[8px]">
-        {allTabs?.map((item, index) => (
+        {allTabs?.map((item) => (
           <button
             className={`relative text-[12px] font-[500] leading-[16px] tracking-[0.12px] py-[8px] px-[4px] transition-all duration-300 ease-in-out transform hover:scale-105 ${
               item === currentHomeTab
